@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        {% block stylesheets %}
+            {% stylesheets filter='yui_css' output='cache/css/*.css'
+                    'css/style.css' %}
+                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <!--header-->
+        <div id="header">
+            {% block header %}
+                <a href="{{ path('homepage') }}">
+                    <h1 class="logo">
+                        {% trans %}Веб-студия{% endtrans %} stfalcon.com
+                    </h1>
+                </a>
+
+                <div class="menu">
+                    {{ knp_menu_render('main', {'currentAsLink': false}) }}
+                </div>
+            {% endblock %}
+        </div>
+        <!--/header-->
+
+        {% block content_wrapper %}
+            <!--content-->
+            <div id="main">
+                <div class="breadcrumbs">
+                    {{ knp_menu_render('breadcrumbs', {'currentAsLink': false}) }}
+                </div>
+
+                <div id="content">
+                    <div class="content-wrapper">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+
+                <!--sidebar-->
+                <div id="sidebar">
+                    {% block sidebar %}
+                        <a href="{{ path('blog_rss') }}" class="rss">
+                            {% trans %}Подписаться на RSS ленту{% endtrans %}
+                        </a>
+
+                        <!--twitter block-->
+                        <div class="twitter">
+                            {#{% render "ApplicationDefaultBundle:Default:twitter" with { 'count': 1 } %}#}
+                            <p>
+                                {% trans %}Следить за{% endtrans %} <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a>
+                            </p>
+                            <div class="twitter-top"></div>
+                        </div>
+                        <!--/twitter block-->
+                    {% endblock %}
+                </div>
+                <!--sidebar-->
+
+            </div>
+            <!--/content-->
+        {% endblock %}
+
+        <!--footer-->
+        <div id="footer">
+            <div class="contacts">
+                <span>
+                    {% trans %}Позвонить{% endtrans %}:
+                    <strong>
+                        +380 97 874-03-42
+                    </strong>
+
+                    {% trans %}Написать{% endtrans %}:
+                    <a href="mailto:info@stfalcon.com">info@stfalcon.com</a>
+                </span>
+
+                <span>
+                    {% trans %}Адрес{% endtrans %}:
+                    <br />
+                    {% trans %}ул. Камeнецкая{% endtrans %} 38,
+                    {% trans %}Хмельницкий{% endtrans %},
+                    {% trans %}Украина{% endtrans %}
+                </span>
+            </div>
+
+            <div class="copyright">
+                &copy; 2009–{{ "now"|date("Y") }} {% trans %}Веб-студия{% endtrans %} stfalcon.com
+                <br />
+                <br />
+                {% trans %}Сайт работает на{% endtrans %}
+                <a href="http://symfony.com" rel="nofollow">
+                    <img weidth="120" height="30" style="vertical-align: middle; padding-left: 5px;" src="{{ asset('images/footer/symfony-logo.png') }}" alt="Symfony2" title="Symfony2" />
+                </a>
+            </div>
+        </div>
+        <!--/footer-->
+
+        {% block javascripts %}{% endblock %}
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-5635962-2']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </body>
+</html>

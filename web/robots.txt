@@ -1,0 +1,7 @@
+#User-agent: *
+# пока прикроем т.к. структура ссылок будет меняться
+#Disallow: /portfolio/
+
+User-agent: *
+Allow: /
+Host: stfalcon.com
